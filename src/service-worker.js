@@ -26,7 +26,8 @@ self.addEventListener('install', (event) => {
     caches.open('offline-html-cache').then((cache) => {
       // Pre-cache the offline.html and any other essential files
       return cache.addAll([
-        '/offline.html', // Pre-cache offline.html
+        '/offline.html',
+        "./Features.js"
         // Add other important files you want to pre-cache here
         // For example: '/index.html', '/styles.css', '/app.js', etc.
       ]);
@@ -65,18 +66,18 @@ registerRoute(
 );
 
 
-registerRoute(
-  // Match the offline.html file
-  ({ url }) => url.pathname ==='/offline.html', 
-  new CacheFirst({
-    cacheName: 'offline-html-cache',
-    plugins: [
-      new ExpirationPlugin({
-        maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
-      }),
-    ],
-  })
-);
+// registerRoute(
+//   // Match the offline.html file
+//   ({ url }) => url.pathname ==='/offline.html', 
+//   new CacheFirst({
+//     cacheName: 'offline-html-cache',
+//     plugins: [
+//       new ExpirationPlugin({
+//         maxAgeSeconds: 30 * 24 * 60 * 60, // Cache for 30 days
+//       }),
+//     ],
+//   })
+// );
 
 // An example runtime caching route for requests that aren't handled by the
 // precache, in this case same-origin .png requests like those from in public/

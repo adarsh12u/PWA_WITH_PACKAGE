@@ -1,26 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Features from './Features'
+import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
 
-function App() {
+
+const router = createBrowserRouter([{
+  path: '/features',
+  element: <Features />
+  }])
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+ 
+      <RouterProvider router={router}>
+    <div>App</div>
+     <Link to={'/features'}> go to the features ok then bro</Link>
+     </RouterProvider>
+    
+      
+  )
 }
 
-export default App;
+export default App
