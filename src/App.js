@@ -1,9 +1,15 @@
 import React from 'react'
 import Features from './Features'
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
+import Home from './Home'
 
 
-const router = createBrowserRouter([{
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+    },
+  {
   path: '/features',
   element: <Features />
   }])
@@ -12,7 +18,6 @@ const App = () => {
  
       <RouterProvider router={router}>
     <div>App</div>
-     <Link to={'/features'}> go to the features ok then bro</Link>
      </RouterProvider>
     
       
