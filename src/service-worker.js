@@ -96,17 +96,20 @@ registerRoute(
 self.addEventListener('fetch', (event) => {
   // Check if the user is navigating to a page (e.g., /features, /about, etc.)
   if (event.request.mode === 'navigate') {
-    event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // If the network request succeeds, return the response
-          return response;
-        })
-        .catch(() => {
-          // If the network request fails (e.g., user is offline), serve the offline.html
-          return caches.match('/offline.html'); // Serve the offline page from the cache
-        })
-    );
+    if (!navigator.onLine) {
+      event.respondWith(
+        fetch(event.request)
+          .then((response) => {
+            // If the network request succeeds, return the response
+            return response;
+          })
+          .catch(() => {
+            // If the network request fails (e.g., user is offline), serve the offline.html
+            return caches.match('/offline.html'); // Serve the offline page from the cache
+          })
+      );
+     }
+ 
   } else {
     // For non-navigation requests, try to use the CacheFirst strategy
     event.respondWith(
