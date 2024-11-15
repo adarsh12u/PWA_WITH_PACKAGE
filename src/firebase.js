@@ -23,7 +23,8 @@ export const messaging = getMessaging(app)
 
 
 export const genratetoken = async () => {
-    const permission = await Notification.requestPermission();
+  const permission = await Notification.requestPermission();
+  console.log("coming inside the denerate token function")
   if (permission === 'granted') {
     console.log(permission, "this is the permission ok bro i am fit here")
     console.log("messaging is here" , messaging)
