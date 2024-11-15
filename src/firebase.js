@@ -31,6 +31,7 @@ export const genratetoken = async () => {
     const token = await getToken(messaging, {
       vapidKey:'BKk9Ri5nDOIEABTOU6r_0O2lnOusTkEqhJsAJnaKv4O3EC39XoPbm2rthzHvCyl0r9pZzyn_6T2hEsfGhouiCbA',
     })
+    console.log("this is a token bto" , token)
     localStorage.setItem('msg_token',JSON.stringify(token))
    }
   
