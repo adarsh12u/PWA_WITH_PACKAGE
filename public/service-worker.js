@@ -9,6 +9,8 @@ import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 clientsClaim();
 
 
+console.log("coming inside the service worker file ")
+
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('my-pwa-cache-v2').then((cache) => {
