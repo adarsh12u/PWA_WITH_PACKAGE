@@ -12,18 +12,6 @@ clientsClaim();
 
 console.log("coming inside the service worker file ")
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open('my-pwa-cache-v2').then((cache) => {
-      // Pre-cache the offline.html and any other essential files
-      return cache.addAll([
-        '/offline.html',
-        "./Features.js"
-      
-      ]);
-    })
-  );
-});
 
 precacheAndRoute(self.__WB_MANIFEST); 
 
