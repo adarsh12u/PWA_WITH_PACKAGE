@@ -31,7 +31,7 @@ export function register(config) {
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
-
+        console.log("sw url is this " , swUrl)
       if (isLocalhost) {
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
@@ -53,9 +53,11 @@ export function register(config) {
 }
 
 function registerValidSW(swUrl, config) {
+  console.log('SW url ia working service worker...', swUrl);
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
+      console.log('Service worker has been registered.', registration);
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
         if (installingWorker == null) {
@@ -71,6 +73,7 @@ function registerValidSW(swUrl, config) {
                 'New content is available and will be used when all ' +
                   'tabs for this page are closed. See https://cra.link/PWA.'
               );
+              console.log("hello from 76 line")
 
               // Execute callback
               if (config && config.onUpdate) {
@@ -81,9 +84,11 @@ function registerValidSW(swUrl, config) {
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
               console.log('Content is cached for offline use.');
+               console.log("hello from 87 line")
 
               // Execute callback
               if (config && config.onSuccess) {
+                console.log("hello from the 91 line and ccan also show the registration value is thais " , registration)
                 config.onSuccess(registration);
               }
             }
