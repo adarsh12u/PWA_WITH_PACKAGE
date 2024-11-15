@@ -3,8 +3,8 @@ import Features from './Features'
 import { createBrowserRouter, Link, RouterProvider } from 'react-router-dom'
 import Home from './Home'
 import About from './About'
-import { genratetoken } from './firebase'
-
+import { genratetoken, messaging } from './firebase'
+import { onMessage } from 'firebase/messaging'
 
 const router = createBrowserRouter([
   {
@@ -22,6 +22,9 @@ const router = createBrowserRouter([
 const App = () => {
   useEffect(() => {
     genratetoken();
+    onMessage(messaging, (payload) => {
+      
+    })
   })
   return (
  

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging } from 'firebase/messaging'
+import { getMessaging  , getToken} from 'firebase/messaging'
 // import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,10 +19,19 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
-const messaging = getMessaging(app)
+export const messaging = getMessaging(app)
 
 
 export const genratetoken = async () => {
     const permission = await Notification.requestPermission();
-     console.log(permission)
+  if (permission === 'granted') {
+    console.log(permission, "this is the permission ok bro i am fit here")
+    console.log("messaging is here" , messaging)
+    const token = await getToken(messaging, {
+      vapidKey:'BKk9Ri5nDOIEABTOU6r_0O2lnOusTkEqhJsAJnaKv4O3EC39XoPbm2rthzHvCyl0r9pZzyn_6T2hEsfGhouiCbA',
+    })
+    console.log(token,"this ia a token 0--0-0-0-0-0-0-0-")
+   }
+  
+  console.log(permission)
 }
