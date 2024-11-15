@@ -1,4 +1,5 @@
 
+/* eslint-disable no-restricted-globals */
 
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
@@ -11,7 +12,7 @@ clientsClaim();
 
 console.log("coming inside the service worker file ")
 
-self.addEventListener('install', (event) => {
+this.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('my-pwa-cache-v2').then((cache) => {
       // Pre-cache the offline.html and any other essential files
@@ -51,7 +52,7 @@ registerRoute(
 
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
-  ({ url }) =>  url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
+  ({ url }) =>  url.origin === this.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new StaleWhileRevalidate({
     cacheName: 'images',
     plugins: [
@@ -62,7 +63,7 @@ registerRoute(
   })
 );
 
-self.addEventListener('fetch', (event) => {
+this.addEventListener('fetch', (event) => {
   // Check if the user is navigating to a page (e.g., /features, /about, etc.)
   if (event.request.mode === 'navigate') {
     if (!navigator.onLine) {
@@ -93,9 +94,9 @@ self.addEventListener('fetch', (event) => {
 
 // This allows the web app to trigger skipWaiting via
 // registration.waiting.postMessage({type: 'SKIP_WAITING'})
-self.addEventListener('message', (event) => {
+this.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
-    self.skipWaiting();
+    this.skipWaiting();
   }
 });
 
