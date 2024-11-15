@@ -38,6 +38,7 @@ registerRoute(
 );
 
 
+
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
   ({ url }) =>  url.origin === self.location.origin && url.pathname.endsWith('.png'), // Customize this strategy as needed, e.g., by changing to CacheFirst.
@@ -50,6 +51,18 @@ registerRoute(
     ],
   })
 );
+
+
+self.addEventListener('push', event => {
+  const options = {
+    body: event.data.text(),
+    icon: '/images.jpeg', 
+  };
+  event.waitUntil(
+    self.registration.showNotification('React_PWA', options)
+  );
+});
+
 
 self.addEventListener('fetch', (event) => {
   // Check if the user is navigating to a page (e.g., /features, /about, etc.)
