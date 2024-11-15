@@ -30,7 +30,7 @@ export const genratetoken = async () => {
     const token = await getToken(messaging, {
       vapidKey:'BKk9Ri5nDOIEABTOU6r_0O2lnOusTkEqhJsAJnaKv4O3EC39XoPbm2rthzHvCyl0r9pZzyn_6T2hEsfGhouiCbA',
     })
-    console.log(token,"this ia a token 0--0-0-0-0-0-0-0-")
+    localStorage.setItem('msg_token',JSON.stringify(token))
    }
   
   console.log(permission)
